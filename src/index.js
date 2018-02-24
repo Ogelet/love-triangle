@@ -5,14 +5,14 @@
 module.exports = function getLoveTrianglesCount(preferences = []) {
   // your implementation
   let count = 0;
-  preferences.forEach(element => {
-    if(preferences[preferences[element - 1] - 1] - 1 === preferences.indexOf(element)){
-      if(element != preferences[element - 1] && preferences[element - 1] != preferences[preferences[element - 1] - 1]){
-        count++;      
-        preferences[element - 1] = 0;
-        preferences[preferences[element - 1] - 1] = 0;
+  preferences.forEach((element, index) => {
+    let secondElement = preferences[element - 1];
+    let thirdElement = preferences[secondElement - 1];
+    if(thirdElement - 1 === index){
+      if(element != secondElement && secondElement != thirdElement){
+        count++;
       }
     };
   });
-  return count;
+  return count/3;
 };
